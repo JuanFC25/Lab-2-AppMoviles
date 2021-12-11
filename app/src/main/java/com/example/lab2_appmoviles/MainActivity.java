@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        //Inicio ejercicio 3
 
         // Recuperando el alarm manager
         //final AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
