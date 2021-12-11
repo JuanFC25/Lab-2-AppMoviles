@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Lab 2 - AppMoviles</string>
+    <string name="titulo_textfield">Ingrese el recordatorio</string>
+    <string name="agregarRecord">Agregar Recordatorio</string>
+    <string name="Fecha">Ingrese la Fecha</string>
+    <string name="Hora">Ingrese la Hora</string>
+    <string name="channel_name">canal_notificaciones</string>
+    <string name="channel_description">Canal creado para las notificaciones de la app</string>
 </resources>
