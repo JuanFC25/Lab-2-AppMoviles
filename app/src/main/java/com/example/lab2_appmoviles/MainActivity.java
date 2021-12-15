@@ -20,6 +20,10 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.lab2_appmoviles.DataSource.RecordatorioPreferencesDataSource;
+import com.example.lab2_appmoviles.Model.Recordatorio;
+import com.example.lab2_appmoviles.Repository.RecordatorioRepository;
+import com.example.lab2_appmoviles.utils.RecordatorioDataSource;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -184,26 +188,29 @@ public class MainActivity extends AppCompatActivity {
                     pendingIntent = PendingIntent.getBroadcast(MainActivity.this,1,alarmIntent,PendingIntent.FLAG_ONE_SHOT);
                     alarm.set(AlarmManager.RTC_WAKEUP, total, pendingIntent);
                     Log.i("noti", recordatorio.getText().toString());
+
+                    Recordatorio record = new Recordatorio(recordatorio.getText().toString(),new Date(total));
+
+                  //  RecordatorioPreferencesDataSource recordatorioPreferencesDataSource = new RecordatorioPreferencesDataSource(getApplicationContext());
+                    RecordatorioDataSource recordatorioDataSource = new RecordatorioPreferencesDataSource(getApplicationContext());
+                    RecordatorioRepository recordatorioRepository = new RecordatorioRepository(recordatorioDataSource);
+
+                    recordatorioRepository.guardarRecordatorio(record);
+
+
+                    Toast.makeText(MainActivity.this, "El recordatorio se creo correctamente.", Toast.LENGTH_LONG).show();
+
+
+
+                    Log.i("textoRec", record.getTexto());
+                    Log.i("fechaRec", record.getFecha().toString());
                     fecha.setText(R.string.Fecha);
                     hora.setText(R.string.Hora);
                     recordatorio.setText("");
-                    Toast.makeText(MainActivity.this, "El recordatorio se creo correctamente.", Toast.LENGTH_LONG).show();
-
                 }
             }
         });
 
-
-        //Inicio ejercicio 3
-
-        // Recuperando el alarm manager
-        //final AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-
-
-
-         // Seteo de la alarma
-        //alarm.set(AlarmManager.RTC_WAKEUP, tiempoEnMillis, pendingIntentConActionParaMiBroadcastReceiver);
 
     }
 
