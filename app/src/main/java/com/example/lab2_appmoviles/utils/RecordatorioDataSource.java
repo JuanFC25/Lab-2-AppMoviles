@@ -16,6 +16,4 @@ public interface RecordatorioDataSource {
     void guardarRecordatorio(final Recordatorio recordatorio, final GuardarRecordatorioCallback callback);
     //void recuperarRecordatorios(final RecuperarRecordatorioCallback callback);
     List<Recordatorio> recuperarRecordatorios();
-
-    Integer proximoId();
 }

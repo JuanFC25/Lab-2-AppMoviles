@@ -31,7 +31,7 @@ public class RecordatorioPreferencesDataSource implements RecordatorioDataSource
 
     @Override
     public List<Recordatorio> recuperarRecordatorios() {
-        List<Recordatorio> recordatorios = new ArrayList<Recordatorio>();
+        List<Recordatorio> recordatorios = new ArrayList<>();
 
         Integer cantidad = proximoId();
 
@@ -45,7 +45,7 @@ public class RecordatorioPreferencesDataSource implements RecordatorioDataSource
         return  recordatorios;
     }
 
-    @Override
+
     public Integer proximoId() {
         Integer id;
         SharedPreferences.Editor editor = sharedPreferences.edit();
