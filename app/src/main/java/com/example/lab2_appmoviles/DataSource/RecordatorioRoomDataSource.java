@@ -2,7 +2,9 @@ package com.example.lab2_appmoviles.DataSource;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -14,6 +16,7 @@ import com.example.lab2_appmoviles.Model.Recordatorio;
 import com.example.lab2_appmoviles.Model.RecordatorioRoom;
 import com.example.lab2_appmoviles.utils.RecordatorioDataSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,15 +29,21 @@ public class RecordatorioRoomDataSource implements RecordatorioDataSource {
                 .fallbackToDestructiveMigration().build();
         dao=db.getDaoRoomRecordatorios();
     }
+//    @Override
+//    public void guardarRecordatorio(Recordatorio recordatorio, GuardarRecordatorioCallback callback) {
+//        dao.insertRecordatorio(RecordatorioRoom.toRecordatorioRoom(recordatorio));
+//        callback.resultado(true);
+//    }
+
     @Override
-    public void guardarRecordatorio(Recordatorio recordatorio, GuardarRecordatorioCallback callback) {
+    public Boolean guardarRecordatorio(Recordatorio recordatorio) {
         dao.insertRecordatorio(RecordatorioRoom.toRecordatorioRoom(recordatorio));
-        callback.resultado(true);
+        return true;
     }
 
-    @SuppressLint("NewApi")
-    public List<Recordatorio> recuperarRecordatorios() {
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List<Recordatorio> recuperarRecordatorios() {
         return dao.getRecordatorios().stream().map(RecordatorioRoom::toRecordatorio).collect(Collectors.toList());
     }
     public Boolean borrarRecordatorios(){
