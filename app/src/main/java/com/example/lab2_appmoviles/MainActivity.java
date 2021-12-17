@@ -2,7 +2,10 @@ package com.example.lab2_appmoviles;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -20,10 +23,12 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
+
 import com.example.lab2_appmoviles.DataSource.RecordatorioPreferencesDataSource;
 import com.example.lab2_appmoviles.Model.Recordatorio;
 import com.example.lab2_appmoviles.Repository.RecordatorioRepository;
 import com.example.lab2_appmoviles.utils.RecordatorioDataSource;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout linearLayout;
     ScrollView scrollView;
     ConstraintLayout constraintLayout;
+
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
@@ -165,42 +171,44 @@ public class MainActivity extends AppCompatActivity {
                 }else if(hora.getText().equals("Ingrese la Hora")){
                     Toast.makeText(MainActivity.this,"Seleccione una hora.", Toast.LENGTH_LONG).show();
                 }else{
-                    final AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
 
                     Long fechaselec = materialDatePicker.todayInUtcMilliseconds();
                     Integer horaSelec = pickerTime.getHour();
                     Integer minSelec = pickerTime.getMinute();
 
-                    Log.i("FECHA EN MILISEG", fechaselec.toString());
-                    Log.i("Hora", horaSelec.toString());
-                    Log.i("min", minSelec.toString());
-
                     Long horaMilisec = new Long(horaSelec)  * 3600000;
                     Long minMilisec = new  Long(minSelec) * 60000;
                     Long total = fechaselec+horaMilisec+minMilisec + 10800000;
+
                     Log.i("tiempo total", total.toString());
 
-                    Intent alarmIntent = new Intent(MainActivity.this, RecordatorioReciver.class);
-                    alarmIntent.setAction("com.example.tp3.RECORDATORIO");
-                    alarmIntent.putExtra("Contenido notificacion", recordatorio.getText().toString());
-                    //alarmIntent.putExtra("RECORDATORIO","com.example.tp3.RECORDATORIO");
-                    PendingIntent pendingIntent;
-                    pendingIntent = PendingIntent.getBroadcast(MainActivity.this,1,alarmIntent,PendingIntent.FLAG_ONE_SHOT);
-                    alarm.set(AlarmManager.RTC_WAKEUP, total, pendingIntent);
-                    Log.i("noti", recordatorio.getText().toString());
-
-                    Recordatorio record = new Recordatorio(recordatorio.getText().toString(),new Date(total));
-
-                  //  RecordatorioPreferencesDataSource recordatorioPreferencesDataSource = new RecordatorioPreferencesDataSource(getApplicationContext());
                     RecordatorioDataSource recordatorioDataSource = new RecordatorioPreferencesDataSource(getApplicationContext());
                     RecordatorioRepository recordatorioRepository = new RecordatorioRepository(recordatorioDataSource);
 
-                    recordatorioRepository.guardarRecordatorio(record);
+                    if (total > Calendar.getInstance().getTimeInMillis()){
+                        final AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                        Intent alarmIntent = new Intent(MainActivity.this, RecordatorioReciver.class);
+                        alarmIntent.setAction("com.example.tp3.RECORDATORIO");
+                        alarmIntent.putExtra("Contenido notificacion", recordatorio.getText().toString());
+
+                        PendingIntent pendingIntent;
+                        pendingIntent = PendingIntent.getBroadcast(MainActivity.this,1,alarmIntent,PendingIntent.FLAG_ONE_SHOT);
+                        alarm.set(AlarmManager.RTC_WAKEUP, total, pendingIntent);
+                        Log.i("noti", recordatorio.getText().toString());
 
 
-                    Toast.makeText(MainActivity.this, "El recordatorio se creo correctamente.", Toast.LENGTH_LONG).show();
+                    }
 
-
+                    Recordatorio record = new Recordatorio(recordatorio.getText().toString(),new Date(total));
+                    Intent intentResultado = new Intent();
+                    if(recordatorioRepository.guardarRecordatorio(record)){
+                        setResult(Activity.RESULT_OK,intentResultado);
+                        finish();
+                    }else {
+                        setResult(Activity.RESULT_CANCELED,intentResultado);
+                        finish();
+                    }
 
                     Log.i("textoRec", record.getTexto());
                     Log.i("fechaRec", record.getFecha().toString());

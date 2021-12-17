@@ -6,4 +6,11 @@
     <string name="Hora">Ingrese la Hora</string>
     <string name="channel_name">canal_notificaciones</string>
     <string name="channel_description">Canal creado para las notificaciones de la app</string>
+    <string name="recordatorio">Recordatorio:</string>
+    <string name="floatingButton">Agregar recordatorio</string>
+    <string name="titulo1menu">Recordatorios</string>
+    <string name="titulo2menu">Preferencias</string>
+    <string name="navigation_drawer_open">abrir</string>
+    <string name="navigation_drawer_close">cerrar</string>
+    <string name="crearRecord">Crear Recordatorio</string>
 </resources>
