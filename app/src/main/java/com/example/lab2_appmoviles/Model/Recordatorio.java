@@ -1,11 +1,10 @@
 package com.example.lab2_appmoviles.Model;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
-
 public class Recordatorio {
-
     private String texto;
     private Date fecha;
 

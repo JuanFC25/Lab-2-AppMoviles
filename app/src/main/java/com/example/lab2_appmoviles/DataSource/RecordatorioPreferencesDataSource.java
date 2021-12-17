@@ -31,7 +31,7 @@ public class RecordatorioPreferencesDataSource implements RecordatorioDataSource
 
     @Override
     public List<Recordatorio> recuperarRecordatorios() {
-        List<Recordatorio> recordatorios = new ArrayList<Recordatorio>();
+        List<Recordatorio> recordatorios = new ArrayList<>();
 
         Integer cantidad = obtenerId();
 
@@ -45,6 +45,7 @@ public class RecordatorioPreferencesDataSource implements RecordatorioDataSource
         }
         return  recordatorios;
     }
+
 
     @Override
     public Boolean borrarRecordatorios() {

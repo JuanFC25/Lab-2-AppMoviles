@@ -17,5 +17,6 @@ public interface RecordatorioDataSource {
     //void recuperarRecordatorios(final RecuperarRecordatorioCallback callback);
     List<Recordatorio> recuperarRecordatorios();
 
+
     Boolean borrarRecordatorios();
 }
