@@ -21,8 +21,20 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
             android:orientation="vertical">
 
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/crearRecord"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textField"
@@ -69,6 +81,15 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/agregarRecord" />
+
+            <TextView
+                android:id="@+id/textAdvertencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/advertencia"
+                android:textAlignment="center"
+                android:textColor="#838282" />
 
         </LinearLayout>
     </ScrollView>

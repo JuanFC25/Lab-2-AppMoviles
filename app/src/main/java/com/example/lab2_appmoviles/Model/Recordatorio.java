@@ -1,7 +1,7 @@
 package com.example.lab2_appmoviles.Model;
 
 
-
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 public class Recordatorio {
@@ -48,4 +48,8 @@ public class Recordatorio {
         return "Recordatorio = Texto:" + this.getTexto() + "  Fecha:" + this.getFecha().toString();
     }
 
+    public String toStringFecha(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return "Fecha: " + simpleDateFormat.format(this.fecha);
+    }
 }

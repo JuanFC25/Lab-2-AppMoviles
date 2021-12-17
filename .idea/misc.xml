@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/layout/activity_categories_recycler.xml" value="0.25" />
         <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/layout/activity_main.xml" value="0.26666666666666666" />
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/layout/fila_recordatorio.xml" value="0.22727272727272727" />
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/layout/header_drawer.xml" value="0.2694684796044499" />
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/layout/preference_screen.xml" value="0.1" />
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/menu/navigation_drawe.xml" value="0.1" />
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/menu/navigation_drawer.xml" value="0.33" />
+        <entry key="..\:/Users/juank/AndroidStudioProjects/Lab2AppMoviles/app/src/main/res/xml/settings.xml" value="0.33" />
       </map>
     </option>
   </component>
