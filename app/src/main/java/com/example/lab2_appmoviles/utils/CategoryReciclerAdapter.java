@@ -120,16 +120,12 @@ class CategoryRecyclerAdapter
                         holder.cd.setCardBackgroundColor(colores[0]);
                     }
                     LinearLayout.LayoutParams lparams =
-                            new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 170);
+                            new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 173);
                     holder.cd.setLayoutParams(lparams);
                     holder.pulsado=false;
                 }
             }
         });
-
-
-
-        //holder.cd.setCardBackgroundColor(Color.MAGENTA);
     }
 
     @Override

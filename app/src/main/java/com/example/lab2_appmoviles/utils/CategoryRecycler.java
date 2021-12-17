@@ -2,6 +2,7 @@ package com.example.lab2_appmoviles.utils;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.FragmentManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -93,10 +94,16 @@ public class CategoryRecycler extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.item1:
-                        Toast.makeText(CategoryRecycler.this, "Selecciono Recordatorios", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(CategoryRecycler.this, "Selecciono Recordatorios", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.item2:
-                        Toast.makeText(CategoryRecycler.this, "Selecciono Preferencias", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(CategoryRecycler.this, "Selecciono Preferencias", Toast.LENGTH_LONG).show();
+                        FragmentManager fragmentManager = getFragmentManager();
+                        menuItem.setChecked(true);
+                        Intent i = new Intent(CategoryRecycler.this,SettingsActivity.class);
+                        startActivity(i);
+                        Log.i("aberga ", "sigue?");
+                        redibujar(color);
                         break;
                 }
 

@@ -13,4 +13,7 @@
     <string name="navigation_drawer_open">abrir</string>
     <string name="navigation_drawer_close">cerrar</string>
     <string name="crearRecord">Crear Recordatorio</string>
+    <string name="permitirNotif">Permitir notificaciones</string>
+    <string name="advertencia">Advertencia: Las notificaciones se encuentan desactivadas,
+     se creará el recordatorio pero no recibira la notificacion. </string>
 </resources>
