@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -12,6 +13,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.AlarmClock;
@@ -48,12 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
     TextView fecha;
     TextView hora;
+    TextView advertencia;
     Button agregar;
     TextInputEditText recordatorio;
     LinearLayout linearLayout;
     ScrollView scrollView;
     ConstraintLayout constraintLayout;
-
+    Boolean preference;
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
@@ -83,8 +86,18 @@ public class MainActivity extends AppCompatActivity {
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         constraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout);
+        advertencia = (TextView) findViewById(R.id.textAdvertencia);
 
         createNotificationChannel();
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        preference= pref.getBoolean("notificacionesRecordatorio",false);
+
+        if(!preference){
+            advertencia.setVisibility(View.VISIBLE);
+        } else{
+            advertencia.setVisibility(View.GONE);
+        }
 
         MaterialDatePicker.Builder builder =MaterialDatePicker.Builder.datePicker();
         builder.setTitleText("Seleccione una Fecha");
@@ -172,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Seleccione una hora.", Toast.LENGTH_LONG).show();
                 }else{
 
-
                     Long fechaselec = materialDatePicker.todayInUtcMilliseconds();
                     Integer horaSelec = pickerTime.getHour();
                     Integer minSelec = pickerTime.getMinute();
@@ -186,7 +198,8 @@ public class MainActivity extends AppCompatActivity {
                     RecordatorioDataSource recordatorioDataSource = new RecordatorioPreferencesDataSource(getApplicationContext());
                     RecordatorioRepository recordatorioRepository = new RecordatorioRepository(recordatorioDataSource);
 
-                    if (total > Calendar.getInstance().getTimeInMillis()){
+                    if (total > Calendar.getInstance().getTimeInMillis()
+                            && preference == true){
                         final AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         Intent alarmIntent = new Intent(MainActivity.this, RecordatorioReciver.class);
                         alarmIntent.setAction("com.example.tp3.RECORDATORIO");
@@ -196,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
                         pendingIntent = PendingIntent.getBroadcast(MainActivity.this,1,alarmIntent,PendingIntent.FLAG_ONE_SHOT);
                         alarm.set(AlarmManager.RTC_WAKEUP, total, pendingIntent);
                         Log.i("noti", recordatorio.getText().toString());
-
 
                     }
 
@@ -221,5 +233,4 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 }

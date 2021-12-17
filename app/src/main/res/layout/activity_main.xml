@@ -82,6 +82,15 @@
                 android:layout_marginBottom="20dp"
                 android:text="@string/agregarRecord" />
 
+            <TextView
+                android:id="@+id/textAdvertencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/advertencia"
+                android:textAlignment="center"
+                android:textColor="#838282" />
+
         </LinearLayout>
     </ScrollView>
 
