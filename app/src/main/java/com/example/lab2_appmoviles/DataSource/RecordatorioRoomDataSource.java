@@ -37,4 +37,8 @@ public class RecordatorioRoomDataSource implements RecordatorioDataSource {
 
         return dao.getRecordatorios().stream().map(RecordatorioRoom::toRecordatorio).collect(Collectors.toList());
     }
+    public Boolean borrarRecordatorios(){
+        dao.borrarRecordatorios();
+        return true;
+    }
 }

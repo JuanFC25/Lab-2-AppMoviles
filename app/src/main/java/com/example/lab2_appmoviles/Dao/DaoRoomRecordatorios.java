@@ -1,6 +1,7 @@
 package com.example.lab2_appmoviles.Dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -15,4 +16,6 @@ public interface DaoRoomRecordatorios {
     void insertRecordatorio(RecordatorioRoom r);
     @Query("SELECT * FROM recordatorios")
     List<RecordatorioRoom> getRecordatorios();
+    @Query("DELETE FROM recordatorios")
+    void borrarRecordatorios();
 }
