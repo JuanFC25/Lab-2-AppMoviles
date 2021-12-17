@@ -1,24 +1,11 @@
 package com.example.lab2_appmoviles.Model;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
-import com.example.lab2_appmoviles.utils.DateConverter;
 
 import java.util.Date;
 import java.util.Objects;
-@Entity (tableName = "recordatorios")
-@TypeConverters(DateConverter.class)
 public class Recordatorio {
-    @PrimaryKey (autoGenerate = true)
-    @NonNull
-    private int id;
-    @ColumnInfo(name = "texto")
     private String texto;
-    @ColumnInfo(name = "fecha")
     private Date fecha;
 
     public Recordatorio(final String texto, final Date fecha) {
@@ -37,12 +24,6 @@ public class Recordatorio {
     }
     public void setFecha(final Date fecha) {
         this.fecha = fecha;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public int getId() {
-        return id;
     }
 
     @Override

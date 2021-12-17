@@ -4,10 +4,9 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import com.example.lab2_appmoviles.Dao.DaoRoomRecordatorios;
-import com.example.lab2_appmoviles.DataSource.RecordatorioRoomDataSource;
-import com.example.lab2_appmoviles.Model.Recordatorio;
+import com.example.lab2_appmoviles.Model.RecordatorioRoom;
 
-@Database(entities = {Recordatorio.class}, version = 3)
+@Database(entities = {RecordatorioRoom.class}, version = 3)
 public abstract class RecordatorioRoomDataBase extends RoomDatabase {
     public abstract DaoRoomRecordatorios getDaoRoomRecordatorios();
 }

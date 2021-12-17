@@ -1,5 +1,6 @@
 package com.example.lab2_appmoviles.DataSource;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.room.Dao;
@@ -10,9 +11,11 @@ import androidx.room.Room;
 import com.example.lab2_appmoviles.Dao.DaoRoomRecordatorios;
 import com.example.lab2_appmoviles.DataBase.RecordatorioRoomDataBase;
 import com.example.lab2_appmoviles.Model.Recordatorio;
+import com.example.lab2_appmoviles.Model.RecordatorioRoom;
 import com.example.lab2_appmoviles.utils.RecordatorioDataSource;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class RecordatorioRoomDataSource implements RecordatorioDataSource {
@@ -25,11 +28,13 @@ public class RecordatorioRoomDataSource implements RecordatorioDataSource {
     }
     @Override
     public void guardarRecordatorio(Recordatorio recordatorio, GuardarRecordatorioCallback callback) {
-        dao.insertRecordatorio(recordatorio);
+        dao.insertRecordatorio(RecordatorioRoom.toRecordatorioRoom(recordatorio));
         callback.resultado(true);
     }
 
+    @SuppressLint("NewApi")
     public List<Recordatorio> recuperarRecordatorios() {
-        return dao.getRecordatorios();
+
+        return dao.getRecordatorios().stream().map(RecordatorioRoom::toRecordatorio).collect(Collectors.toList());
     }
 }
